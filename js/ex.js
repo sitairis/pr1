@@ -1,14 +1,8 @@
 let choose;
 
 function operationChoose(question) {
-   /* do{
-        alert("You didn't enter operation.");*/
-        choose = +prompt(question);
-       /* if ( choose == null || choose == '')
-            i = 1;
-    }while(i == 1);*/
-
-    switch (choose){
+    choose = +prompt(question);
+     switch (choose){
         case 1:{
             alert( plass( +prompt('Enter a', '')
                 , +prompt('Enter b', '') ) );
