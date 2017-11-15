@@ -32,49 +32,137 @@ let matrix = {
     }
 };
 
-function matrixSum( mtxF, mtxS ) {
+function matrixOperation( type ) {//change name of function
 
-    // if ( (mtxF[N] === mtxS[N]) && (mtxF[M] === mtxS[M]) ){
-        alert("1");
-        let matrixSum = Object.assign( {}, matrix);
+    let matr = { ...matrix };
+    let mtxF = { ...matrix };
+    let mtxS = { ...matrix };
 
-        for ( let i = 0; i < mtxS.N; i++ ){
-            matrixSum['str' + i] = [];
-            for ( let j = 0; j < mtxS.M; j++ ){
-                matrixSum['str' + i][j] = mtxF['str' + i][j] + mtxS['str' + i][j];
+    alert("Введите первую матрицу");
+    mtxF.enterMatrix();
+    alert("Введите вторую матрицу");
+    mtxS.enterMatrix();
+
+    if ( ( mtxF[N] == mtxS[N] ) && ( mtxF[M] == mtxS[M] ) ){
+        matr[N] = mtxF[N];//копировать часть свойств?
+        matr[M] = mtxF[M];
+
+        switch ( type ){
+            case 1 : {
+                for ( let i = 0; i < mtxS.N; i++ ){
+                    matr['str' + i] = [];
+                    for ( let j = 0; j < mtxS.M; j++ ){
+                        matr['str' + i][j] = mtxF['str' + i][j] + mtxS['str' + i][j];
+                    }
+                }
             }
+            break;
+            case 2 : {
+                for ( let i = 0; i < mtxS.N; i++ ){
+                    matr['str' + i] = [];
+                    for ( let j = 0; j < mtxS.M; j++ ){
+                        matr['str' + i][j] = mtxF['str' + i][j] - mtxS['str' + i][j];
+                    }
+                }
+            }
+            break;
+            case 3 : {
+                for ( let i = 0; i < mtxS.N; i++ ){
+                    matr['str' + i] = [];
+                    for ( let j = 0; j < mtxS.M; j++ ){
+                        matr['str' + i][j] = mtxF['str' + i][j] * mtxS['str' + i][j];
+                    }
+                }
+            }
+            break;
+            case 4 : {
+                for ( let i = 0; i < mtxS.N; i++ ){
+                    matr['str' + i] = [];
+                    for ( let j = 0; j < mtxS.M; j++ ){
+                        matr['str' + i][j] = mtxF['str' + i][j] / mtxS['str' + i][j];
+                    }
+                }
+            }
+            break;
         }
-        return matrixSum;
-    // }
-    // return null;
+        return matr;
+    } else {
+        return ;
+    }
+
 }
+
+function matrixOperationChoose(question) {
+    let flag = 1;
+
+    while ( flag ){
+        choose = +prompt( question );
+        switch ( choose ){
+            case 1:{
+                let mtr = { ...matrix };
+                mtr =  { ...matrixOperation( choose ) };
+                alert("матрица суммы");
+                mtr.showMatrix();
+            }
+                break;
+            case 2:{
+                let mtr = { ...matrixOperation( choose ) };
+                alert("матрица разности");
+                mtr.showMatrix();
+            }
+                break;
+            case 3:{
+                let mtr = { ...matrixOperation( choose ) };
+                alert("результат перемножения матриц");
+                mtr.showMatrix();
+            }
+                break;
+            case 4:{
+                let mtr = { ...matrixOperation( choose ) };
+                alert("результат деления матриц");
+                mtr.showMatrix();
+            }
+                break;
+            case 5:{
+                // matrixF.showMatrix();
+            }
+                break;
+            case 6 :{
+                // matrixS.showMatrix();
+            }
+                break;
+            case 0 :{
+                flag = 0;
+            }
+                break;
+        }
+    }
+
+}
+
+
 
 function simpleOperationChoose(question) {
     choose = +prompt(question);
      switch (choose){
         case 1:{
-            alert( plass( +prompt('Enter a', '')
-                , +prompt('Enter b', '') ) );
+            alert( plass( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
         }
         break;
         case 2:{
-            alert( minus( +prompt('Enter a', '')
-                , +prompt('Enter b', '') ) );
+            alert( minus( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
             }
             break;
         case 3:{
-            alert( mult( +prompt('Enter a', '')
-                , +prompt('Enter b', '') ) );
+            alert( mult( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
         }
         break;
             case 4:{
-                alert( div( +prompt('Enter a', '')
-                    , +prompt('Enter b', '') ) );
+                alert( div( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
             }
                 break;
             case 5:{
-                alert( mod( +prompt('Enter a', '')
-                    , +prompt('Enter b', '') ) );
+                alert( mod( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
             }
             break;
      }
@@ -100,7 +188,9 @@ function mod(a, b ) {
     return a % b;
 }
 
-function chooseType() {
+
+
+function chooseTypeCalc() {
 
     switch ( +prompt("Choose type of calc:\n" +
         "1. Matrix\n2. Simple") ){
@@ -111,7 +201,8 @@ function chooseType() {
                 "3. *\n" +
                 "4. /\n" +
                 "5. show matrixF\n" +
-                "6. show matrixS");
+                "6. show matrixS\n" +
+                "0. Close");
         }
         break;
         case 2:{
@@ -126,53 +217,6 @@ function chooseType() {
     }
 }
 
-chooseType();
-
-function matrixOperationChoose(question) {
-    let flag = 1;
-    let matrixF = Object.assign({}, matrix);
-    let matrixS = Object.assign({}, matrix);
-    while ( flag ){
-        choose = +prompt( question );
-        switch ( choose ){
-            case 1:{
-                matrixF.enterMatrix();
-                matrixS.enterMatrix();
-                let mtrSum = Object( {}, matrixSum(matrixF, matrixS) );
-                if ( !mtrSum ){
-                    alert("не удалось суммировать матрицы");
-                }
-                mtrSum.showMatrix();
-            }
-                break;
-            case 2:{
-
-            }
-                break;
-            case 3:{
-
-            }
-                break;
-            case 4:{
-
-            }
-                break;
-            case 5:{
-                matrixF.showMatrix();
-            }
-                break;
-            case 6 :{
-                matrixS.showMatrix();
-            }
-                break;
-            case 0 :{
-                flag = 0;
-            }
-                break;
-        }
-    }
-
-}
-
+//chooseTypeCalc();
 
 
