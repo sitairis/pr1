@@ -1,7 +1,7 @@
 /*Массивы с числовыми индексами
 * 1
 * Как получить последний элемент из произвольного массива?*/
-function task1() {
+{
     let goods  = ['a1', 'a2', 'a3'];
     alert( 'task 1  '+ goods[goods.length - 1] );
 }
@@ -9,7 +9,7 @@ function task1() {
 
 /*2
 * Как добавить элемент в конец произвольного массива?*/
-function task2(){
+{
     goods[goods.length] = 'a4';
     alert(goods);
 }
@@ -22,7 +22,7 @@ function task2(){
 Замените предпоследнее значение с конца на «Классика». Код замены предпоследнего значения должен работать для массивов любой длины.
 Удалите первое значение массива и выведите его alert.
 Добавьте в начало значения «Рэп» и «Регги».*/
-function task3() {
+{
     let styles = ['Джаз', 'Блюз'];
     alert(styles);
     styles[styles.length] = 'Рок-н-Ролл';
@@ -37,7 +37,7 @@ function task3() {
 
 /*4
 * Напишите код для вывода alert случайного значения из массива:*/
-function task4() {
+{
     let arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
     let rand = Math.floor( Math.random() * arr.length );
     alert( arr[rand] );
@@ -51,7 +51,7 @@ function task4() {
 При этом ноль 0 не должен заканчивать ввод, это разрешённое число.
 Выводит сумму всех значений массива*/
 
-function task5() {
+{
     let array = [];
     let sum = 0;
     while(1){
@@ -65,7 +65,7 @@ function task5() {
 }
  /*6*/
 
- function task6() {
+{
      let arr = [1, 2, 3];
 
      let arr2 = arr;
@@ -78,7 +78,8 @@ function task5() {
 
  /*7
  * */
- //
+{
+    //
 // function find( array, value ) {
 //     if (array.indexOf) { // если метод существует
 //         return array.indexOf(value);
@@ -93,36 +94,39 @@ function task5() {
 // создаем пустой массив и проверяем поддерживается ли indexOf
 
 //let arr7 = ["a", -1, 2, "b"];
-if ([].indexOf) {
-    let find = function(array, value) {
-        return array.indexOf(value);
-    }
-
-} else {
-    let find = function(array, value) {
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] === value) return i;
+    if ([].indexOf) {
+        let find = function (array, value) {
+            return array.indexOf(value);
         }
-        return -1;
+
+    } else {
+        let find = function (array, value) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === value) return i;
+            }
+            return -1;
+        }
     }
-}
 //alert( find(arr7, 2) );
+}
 
 /*8*/
-let arr8 = [5, 4, 3, 8, 0];
+{
+    let arr8 = [5, 4, 3, 8, 0];
 
-function filterRange(arr8, min, max){
-    let range = [];
-    for (let i = 0; i < arr8.length; i++ ){
-        if ( arr8[i] <= max && arr8[i] >= min ){
-            range.push(arr8[i]);
+    function filterRange(arr8, min, max) {
+        let range = [];
+        for (let i = 0; i < arr8.length; i++) {
+            if (arr8[i] <= max && arr8[i] >= min) {
+                range.push(arr8[i]);
+            }
         }
+        return range;
     }
-    return range;
-}
-let filtered = filterRange(arr8, 3, 5);
-//alert(filtered);
 
+    let filtered = filterRange(arr8, 3, 5);
+//alert(filtered);
+}
 /*9
 * Древний алгоритм «Решето Эратосфена» для поиска всех простых
 * чисел до n выглядит так:
@@ -133,57 +137,57 @@ let filtered = filterRange(arr8, 3, 5);
 Поменять значение p на первое не зачеркнутое число после p.
 Повторить шаги 3-4 пока p2 < n.
 Все оставшиеся не зачеркнутыми числа – простые.*/
-let arr9 = [];
-
-for (let i = 2; i < 101; i++ ){
+{
+    let arr9 = [];
+    for (let i = 2; i < 101; i++ ){
     arr9.push(i);
-}
+    }
 
-alert(arr9);
+    alert(arr9);
 
-let indexP = 0;
+    let indexP = 0;
 
-function erotosfen( arr9, p ) {
-    for ( let i = ++indexP ; i < arr9.length; i++ ){
-        if ( arr9[i] % p == 0){
-            arr9[i] = 0;
+    function erotosfen( arr9, p ) {
+        for ( let i = ++indexP ; i < arr9.length; i++ ){
+            if ( arr9[i] % p == 0){
+                arr9[i] = 0;
+            }
+        }
+        p = arr9[indexP];
+        if ( (p*p) < 100 ){
+            erotosfen( arr9, p );
         }
     }
-    p = arr9[indexP];
-    if ( (p*p) < 100 ){
-        erotosfen( arr9, p );
+
+    erotosfen( arr9, 2 );
+
+    let newArr9 = [];
+    let sumErotosfenArray = 0;
+
+    for (let i = 0; i < arr9.length; i++ ){
+        if ( arr9[i] ){//избавляюсь от 0
+            newArr9.push(arr9[i]);
+            sumErotosfenArray += arr9[i];
+        }
+
     }
+    alert( newArr9 );
+    alert( sumErotosfenArray );
 }
-
-erotosfen( arr9, 2 );
-
-let newArr9 = [];
-let sumErotosfenArray = 0;
-
-for (let i = 0; i < arr9.length; i++ ){
-    if ( arr9[i] ){//избавляюсь от 0
-        newArr9.push(arr9[i]);
-        sumErotosfenArray += arr9[i];
-    }
-
-}
-alert( newArr9 );
-alert( sumErotosfenArray );
 
 /*10
 * */
-
-
-function getMaxSubSum(arr10) {
-    let maxSum = 0, partialSum = 0;
-    for ( let i = 0; i < arr10.length; i++ ) {
-        partialSum += arr10[i];
-        maxSum = Math.max( maxSum, partialSum );
-        if ( partialSum < 0 )
-            partialSum = 0;
+{
+    function getMaxSubSum(arr10) {
+        let maxSum = 0, partialSum = 0;
+        for ( let i = 0; i < arr10.length; i++ ) {
+            partialSum += arr10[i];
+            maxSum = Math.max( maxSum, partialSum );
+            if ( partialSum < 0 )
+                partialSum = 0;
+        }
+        return maxSum;
     }
-    return maxSum;
-}
 
 // alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
 // alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
@@ -191,4 +195,6 @@ function getMaxSubSum(arr10) {
 // alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 // alert( getMaxSubSum([1, 2, 3]) ); // 6
 // alert( getMaxSubSum([-1, -2, -3]) ); // 0
+}
+
 

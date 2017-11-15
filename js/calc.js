@@ -1,4 +1,5 @@
 let choose  = 0;
+
 let matrix = {
     N : 0,
     M : 0,
@@ -26,13 +27,15 @@ let matrix = {
     },
     showMatrix() {
         for( let key in this){
-            alert(key);
-            alert(this[key]);
+            if (typeof this[key] !== 'function') {
+                alert(key);
+                alert(this[key]);
+            }
         }
     }
 };
 
-function matrixOperation( type ) {//change name of function
+function matrixOperation( type ) {
 
     let matr = { ...matrix };
     let mtxF = { ...matrix };
