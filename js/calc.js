@@ -86,8 +86,6 @@ function matrixOperation( type ) {//change name of function
             break;
         }
         return matr;
-    } else {
-        return ;
     }
 
 }
@@ -191,7 +189,6 @@ function mod(a, b ) {
 
 
 function chooseTypeCalc() {
-
     switch ( +prompt("Choose type of calc:\n" +
         "1. Matrix\n2. Simple") ){
         case 1:{
