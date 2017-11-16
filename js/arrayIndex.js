@@ -10,6 +10,7 @@
 /*2
 * Как добавить элемент в конец произвольного массива?*/
 {
+    let goods  = ['a1', 'a2', 'a3'];
     goods[goods.length] = 'a4';
     alert(goods);
 }
@@ -67,10 +68,8 @@
 
 {
      let arr = [1, 2, 3];
-
      let arr2 = arr;
      arr2[0] = 5;
-
      alert( arr[0] );
      alert( arr2[0] );
  }
@@ -149,7 +148,7 @@
 
     function erotosfen( arr9, p ) {
         for ( let i = ++indexP ; i < arr9.length; i++ ){
-            if ( arr9[i] % p == 0){
+            if ( arr9[i] % p == 0 ){//???
                 arr9[i] = 0;
             }
         }
