@@ -5,7 +5,7 @@
 {
     let obj = {
         className: 'open menu'
-    }
+    };
 
     function addClass(obj, cls) {
         let arrayClass= obj.className.split(' ');
@@ -37,10 +37,11 @@ camelize("-webkit-transition") == 'WebkitTransition';
         }
         return arrayStr.join('');
     }
-}
-// alert ( camelize("background-color") );
+    // alert ( camelize("background-color") );
 // alert ( camelize("list-style-image") );
 // alert ( camelize("-webkit-transition") );
+}
+
 
 /*3
 * У объекта есть свойство className, которое хранит список «классов» – слов, разделенных пробелами:
@@ -70,7 +71,7 @@ alert( obj.className ); // 'my'
         //         arrayClass.splice(i--, 1); // удалить класс
         //     }
         // }
-        while ( arrayClass.indexOf( cls ) != -1 ){
+        while ( arrayClass.indexOf( cls ) != (-1) ){
             delete arrayClass[arrayClass.indexOf( cls )];
         }
         obj.className = arrayClass.join(' ');
@@ -109,11 +110,168 @@ alert( obj.className ); // 'my'
 }
 /*5
 * Как отсортировать массив чисел в обратном порядке?*/
-let arr = [5, 2, 1, -10, 8];
+{
+    let arr = [5, 2, 1, -10, 8];
+    arr.sort(
+        function ( a, b ) {
+            return b - a;
+        });
 
-arr.sort(
-    function ( a, b ) {
-        return b - a;
+    // alert( arr ); // 8, 5, 2, 1, -10
+}
+
+/*6
+* Есть массив строк arr.
+* Создайте массив arrSorted – из тех же элементов, но отсортированный.
+Исходный массив не должен меняться.*/
+{
+    let arr = ["HTML", "JavaScript", "CSS"];
+    let arrSorted = [];
+    // let arrSorted = arr.slice().sort();
+    for ( let i = 0; i < arr.length; i++ ){
+        arrSorted[i] = arr[i];
+    }
+    arrSorted.sort();
+
+    // alert( arrSorted ); // CSS, HTML, JavaScript
+    // alert( arr ); // HTML, JavaScript, CSS (без изменений)
+}
+/*7
+* Используйте функцию sort для того, чтобы «перетрясти» элементы массива в случайном порядке.*/
+{
+    let arr = [1, 2, 3, 4, 5];
+
+    arr.sort( ( a, b ) => { return Math.random() - 0.5;} );
+
+    // function compareRandom( a, b ) {
+    //     return Math.random() - 0.5;
+    // }
+    //
+    // arr.sort( compareRandom );
+
+    // alert( arr ); // элементы в случайном порядке, например [3,5,1,2,4]
+}
+/*8
+Напишите код, который отсортирует массив объектов people по полю age.*/
+{
+    let vasya = { name: "Вася", age: 23 };
+    let masha = { name: "Маша", age: 18 };
+    let vovochka = { name: "Вовочка", age: 6 };
+
+    let people = [ vasya , masha , vovochka ];
+
+    people.sort( ( a, b ) => {
+        return a.age - b.age;
     });
 
-alert( arr ); // 8, 5, 2, 1, -10
+// теперь people: [vovochka, masha, vasya]
+    alert( people[0].age ); // 6
+
+    // for (let i = 0; i < people.length; i++ ){
+    //     alert( people[i].name );
+    // }
+
+    // for (let obj in people ){
+    //     alert( obj.name );
+    // }
+
+}
+/*9
+
+ */
+{
+    let list = { value: 1 };
+
+
+    list.next = { value: 2 };
+    list.next.next = { value: 3 };
+    list.next.next.next = { value: 4 };
+
+    function printList( list ) {
+        let tmpList = list;
+        while ( tmpList ){
+            if ( tmpList.value ) {
+                alert(tmpList.value);
+                tmpList = tmpList.next;
+            }
+        }
+    }
+    // printList( list );
+
+    function printListRecurs( list ) {
+        let tmpList = list;
+        alert(tmpList.value);
+
+        if ( tmpList ){
+            printListRecurs( tmpList.next );
+        }
+    }
+
+    // printListRecurs( list );
+
+    function printListRecursReverse(list) {
+        let tmpList = list;// не понимаю как работает!
+        if ( tmpList.next ){
+            printListRecursReverse( tmpList.next );
+        }
+        alert( tmpList.value );
+    }
+
+    // printListRecursReverse( list );
+
+    function printListReverse( list ) {
+        let tmpList = list;
+        let array = [];
+        while ( tmpList ){
+            array.push( tmpList.value );
+            tmpList = tmpList.next;
+        }
+        for (let i = array.length - 1; i >= 0; i-- ) {
+            alert( array[i] );
+        }
+    }
+
+    // printListReverse( list );
+}
+/*10
+Напишите функцию aclean(arr), которая возвращает массив слов, очищенный от анаграмм.*/
+{
+    function aclean(arr) {
+        let obj = {};
+        for ( let i = 0; i < arr.length; i++ ) {
+            // разбить строку на буквы, отсортировать и слить обратно
+            let sorted = arr[i].toLowerCase().split('').sort().join('');
+
+            obj[sorted] = arr[i]; // сохраняет только одно значение с таким ключом
+        }
+        let result = [];
+
+        // теперь в obj находится для каждого ключа ровно одно значение
+        for (let key in obj) {
+            result.push(obj[key]);
+        }
+        return result;
+    }
+
+    let arr = ["воз", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
+
+    // alert( aclean(arr) );
+}
+/*11
+Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr. */
+{
+    function unique(arr) {
+        let obj = {};
+        for (let i = 0; i < arr.length; i++) {
+            let str = arr[i];
+            obj[str] = true; // запомнить строку в виде свойства объекта
+        }
+        return Object.keys(obj);
+    }
+
+    let strings = ["кришна", "кришна", "харе", "харе",
+        "харе", "харе", "кришна", "кришна", "8-()"
+    ];
+
+    alert( unique(strings) ); // кришна, харе, 8-()
+}
