@@ -1,4 +1,5 @@
-let choose  = 0;
+
+
 let matrix = {
     N : 0,
     M : 0,
@@ -24,8 +25,8 @@ let matrix = {
             }
         }
     },
-    showMatrix() {
-        for( let key in this){
+    showMatrix: function () {
+        for (let key in this) {
             if (typeof this[key] !== 'function') {
                 alert(key);
                 alert(this[key]);
@@ -45,7 +46,7 @@ function matrixOperation( type ) {// обсудить функцию!!!!
     alert("Введите вторую матрицу");
     mtxS.enterMatrix();
 
-    if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){
+    if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){///Почему варнинг
         matr.N = mtxF.N;//копировать часть свойств?
         matr.M = mtxF.M;
         alert(matr.N + " " + mtxF.N +" "+ matr.M + " "+ mtxF.M);
@@ -82,7 +83,7 @@ function matrixOperationChoose(question) {
     let flag = 1;
 
     while ( flag ){
-        choose = +prompt( question );
+        let choose = +prompt( question );
         if( !choose ){
             flag = 0;
         } else {
@@ -95,8 +96,8 @@ function matrixOperationChoose(question) {
 
 
 function simpleOperationChoose(question) {
-    choose = +prompt(question);
-     switch (choose){
+    let choose = +prompt(question);
+    switch (choose){
         case 1:{
             alert( plass( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
         }
@@ -139,8 +140,6 @@ function div(a, b) {
 function mod(a, b ) {
     return a % b;
 }
-
-
 
 function chooseTypeCalc() {
     switch ( +prompt("Choose type of calc:\n" +
