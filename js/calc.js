@@ -1,5 +1,4 @@
 let choose  = 0;
-
 let matrix = {
     N : 0,
     M : 0,
@@ -35,7 +34,7 @@ let matrix = {
     }
 };
 
-function matrixOperation( type ) {
+function matrixOperation( type ) {// обсудить функцию!!!!
 
     let matr = { ...matrix };
     let mtxF = { ...matrix };
@@ -46,51 +45,37 @@ function matrixOperation( type ) {
     alert("Введите вторую матрицу");
     mtxS.enterMatrix();
 
-    if ( ( mtxF[N] == mtxS[N] ) && ( mtxF[M] == mtxS[M] ) ){
-        matr[N] = mtxF[N];//копировать часть свойств?
-        matr[M] = mtxF[M];
+    if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){
+        matr.N = mtxF.N;//копировать часть свойств?
+        matr.M = mtxF.M;
+        alert(matr.N + " " + mtxF.N +" "+ matr.M + " "+ mtxF.M);
 
-        switch ( type ){
-            case 1 : {
-                for ( let i = 0; i < mtxS.N; i++ ){
-                    matr['str' + i] = [];
-                    for ( let j = 0; j < mtxS.M; j++ ){
+        for ( let i = 0; i < mtxS.N; i++ ) {
+            matr['str' + i] = [];
+            for (let j = 0; j < mtxS.M; j++) {
+                switch (type) {
+                    case 1 : {
                         matr['str' + i][j] = mtxF['str' + i][j] + mtxS['str' + i][j];
                     }
-                }
-            }
-            break;
-            case 2 : {
-                for ( let i = 0; i < mtxS.N; i++ ){
-                    matr['str' + i] = [];
-                    for ( let j = 0; j < mtxS.M; j++ ){
+                        break;
+                    case 2 : {
                         matr['str' + i][j] = mtxF['str' + i][j] - mtxS['str' + i][j];
                     }
-                }
-            }
-            break;
-            case 3 : {
-                for ( let i = 0; i < mtxS.N; i++ ){
-                    matr['str' + i] = [];
-                    for ( let j = 0; j < mtxS.M; j++ ){
+                        break;
+                    case 3 : {
                         matr['str' + i][j] = mtxF['str' + i][j] * mtxS['str' + i][j];
                     }
-                }
-            }
-            break;
-            case 4 : {
-                for ( let i = 0; i < mtxS.N; i++ ){
-                    matr['str' + i] = [];
-                    for ( let j = 0; j < mtxS.M; j++ ){
+                        break;
+                    case 4 : {
                         matr['str' + i][j] = mtxF['str' + i][j] / mtxS['str' + i][j];
                     }
+                        break;
                 }
             }
-            break;
         }
         return matr;
     }
-
+    return null;
 }
 
 function matrixOperationChoose(question) {
@@ -98,47 +83,13 @@ function matrixOperationChoose(question) {
 
     while ( flag ){
         choose = +prompt( question );
-        switch ( choose ){
-            case 1:{
-                let mtr = { ...matrix };
-                mtr =  { ...matrixOperation( choose ) };
-                alert("матрица суммы");
-                mtr.showMatrix();
-            }
-                break;
-            case 2:{
-                let mtr = { ...matrixOperation( choose ) };
-                alert("матрица разности");
-                mtr.showMatrix();
-            }
-                break;
-            case 3:{
-                let mtr = { ...matrixOperation( choose ) };
-                alert("результат перемножения матриц");
-                mtr.showMatrix();
-            }
-                break;
-            case 4:{
-                let mtr = { ...matrixOperation( choose ) };
-                alert("результат деления матриц");
-                mtr.showMatrix();
-            }
-                break;
-            case 5:{
-                // matrixF.showMatrix();
-            }
-                break;
-            case 6 :{
-                // matrixS.showMatrix();
-            }
-                break;
-            case 0 :{
-                flag = 0;
-            }
-                break;
+        if( !choose ){
+            flag = 0;
+        } else {
+            let mtr =  { ...matrixOperation( choose ) };
+            mtr.showMatrix();
         }
     }
-
 }
 
 
@@ -193,7 +144,8 @@ function mod(a, b ) {
 
 function chooseTypeCalc() {
     switch ( +prompt("Choose type of calc:\n" +
-        "1. Matrix\n2. Simple") ){
+        "1. Matrix\n" +
+        "2. Simple") ){
         case 1:{
             matrixOperationChoose("Calc: \nWhat are you want?\n" +
                 "1. +\n" +
@@ -217,6 +169,6 @@ function chooseTypeCalc() {
     }
 }
 
-//chooseTypeCalc();
+chooseTypeCalc();
 
 

@@ -21,7 +21,7 @@ function rleCompression( str ) {
 //https://gist.github.com/simoneb/ce45daa8f5b42b5c88cb
 function rleCompressionWithReduce( str ) {
    let array = str.split('');
-   let resultStr = array.reduce( ( obj, cur, i, array ) => {
+   let resultObj = array.reduce( ( obj, cur, i, array ) => {
         if ( i && array[++i] != cur ){//можно и !==???
             if ( obj.count != 1){//чтобы не выводило 1
                 obj.result += cur + obj.count;
@@ -34,7 +34,7 @@ function rleCompressionWithReduce( str ) {
         }
         return obj;
    }, { count:1, result:'' } );
-   return resultStr;
+   return resultObj;
 }
 
 alert( rleCompression( str ) );//A3SD3F4A
