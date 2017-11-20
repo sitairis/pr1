@@ -59,24 +59,22 @@ function fib1( n ) {
  * @param {*} obj2
  * @return {boolean}
  */
-function deepEqual( obj1, obj2 ) {
-    let keysObj1 = Object.keys(obj1);
-    alert( keysObj1 +'1');
-    let keysObj2 = Object.keys(obj2);
-    alert( keysObj2 +'2');
+/* без рекурсии*/
+//нашла пример
+function deepEqual1( obj1, obj2 ) {
+   let keys1 = Object.keys(obj1);
+   let keys2 = Object.keys(obj2);
 
-        if ( obj1 instanceof "object" && obj2 instanceof "object" ) {
-            alert((obj1[keysObj1[0]]));
-            deepEqual(obj1[keysObj1[0]], obj2[keysObj2[0]]);
-        } else {
-            if (obj1[keysObj1[0]] == obj2[keysObj2[0]]) {
-                deepEqual(obj1[keysObj1[0]], obj2[keysObj2[0]]);
-            } else {
-                return false
-            }
-        }
-
-    return true;
+   if( keys1.length != keys2.length ){
+       return false;
+   }
+   return !keys1.filter( function(key) {
+       if( typeof obj1[key] == 'object' ){
+           return !deepEqual1(obj1[key], obj2[key]);
+       }else {
+           return obj1[key] !== obj2[key];
+       }
+   }).length;
 }
 
 
@@ -145,4 +143,4 @@ let customerOrder4 = {
     }
 };
 
-alert( deepEqual( customerOrder1, customerOrder2 ) + ',h,h,h,gg' );
+alert( deepEqual1( customerOrder4, customerOrder3 ) );
