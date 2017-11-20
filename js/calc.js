@@ -48,13 +48,13 @@ function matrixOperation( type ) {// обсудить функцию!!!!
 
     if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){///Почему варнинг
         matr.N = mtxF.N;//копировать часть свойств?
-        matr.M = mtxF.M;
+        matr.M = mtxF.M;//как сделать правильно
         alert(matr.N + " " + mtxF.N +" "+ matr.M + " "+ mtxF.M);
 
         for ( let i = 0; i < mtxS.N; i++ ) {
             matr['str' + i] = [];
             for (let j = 0; j < mtxS.M; j++) {
-                switch (type) {
+                switch (type) {//как сделать лучше?
                     case 1 : {
                         matr['str' + i][j] = mtxF['str' + i][j] + mtxS['str' + i][j];
                     }
