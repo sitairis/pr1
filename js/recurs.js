@@ -78,6 +78,23 @@ function deepEqual1( obj1, obj2 ) {
 }
 
 
+function deepEqual( obj1, obj2 ) {
+    if( obj1 === obj2 ){
+        return true;
+    }
+    if ( obj1 == null || obj2 == null || typeof obj1 != 'object' || typeof obj2 != 'object'){
+        return false;
+    }
+    let countKeysObj1 = Object.keys( obj1 ).length;
+    let countKeysObj2 = Object.keys( obj2 ).length;
+    for ( let key in obj1 ){
+        if ( !(key in obj2) || !deepEqual( obj1[key], obj2[key] )){
+            return false;
+        }
+    }
+    return countKeysObj1 == countKeysObj2;
+}
+
 /*Для deepEqual договоримся, что свойства obj1 и obj2 могут быть только примитивами либо объектами (т.е. для массивов, функций и т.д. не надо делать обработку).
  Пример объектов для сравнения deepEqual:*/
 
@@ -143,4 +160,5 @@ let customerOrder4 = {
     }
 };
 
-alert( deepEqual1( customerOrder4, customerOrder3 ) );
+// alert( deepEqual1( customerOrder4, customerOrder3 ) );
+alert( deepEqual( customerOrder1, customerOrder2 ) );
