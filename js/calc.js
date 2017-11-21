@@ -25,7 +25,7 @@ let matrix = {
             }
         }
     },
-    showMatrix: function () {
+    showMatrix() {
         for (let key in this) {
             if (typeof this[key] !== 'function') {
                 alert(key);
@@ -35,7 +35,7 @@ let matrix = {
     }
 };
 
-function matrixOperation( type ) {// обсудить функцию!!!!
+function matrixOperations( type ) {// обсудить функцию!!!!
 
     let matr = { ...matrix };
     let mtxF = { ...matrix };
@@ -46,10 +46,9 @@ function matrixOperation( type ) {// обсудить функцию!!!!
     alert("Введите вторую матрицу");
     mtxS.enterMatrix();
 
-    if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){///Почему варнинг
+    if ( ( mtxF.N == mtxS.N ) && ( mtxF.M == mtxS.M ) ){
         matr.N = mtxF.N;//копировать часть свойств?
         matr.M = mtxF.M;//как сделать правильно
-        alert(matr.N + " " + mtxF.N +" "+ matr.M + " "+ mtxF.M);
 
         for ( let i = 0; i < mtxS.N; i++ ) {
             matr['str' + i] = [];
@@ -87,7 +86,7 @@ function matrixOperationChoose(question) {
         if( !choose ){
             flag = 0;
         } else {
-            let mtr =  { ...matrixOperation( choose ) };
+            let mtr =  { ...matrixOperations( choose ) };
             mtr.showMatrix();
         }
     }
@@ -97,28 +96,28 @@ function matrixOperationChoose(question) {
 
 function simpleOperationChoose(question) {
     let choose = +prompt(question);
-    switch (choose){
-        case 1:{
-            alert( plass( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
+    switch (choose) {
+        case 1: {
+            alert(plass(+prompt('Enter a', ''), +prompt('Enter b', '')));
         }
-        break;
-        case 2:{
-            alert( minus( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
-            }
             break;
-        case 3:{
+        case 2: {
+            alert( minus(+prompt('Enter a', ''), +prompt('Enter b', '') ) );
+        }
+            break;
+        case 3: {
             alert( mult( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
         }
-        break;
-            case 4:{
-                alert( div( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
-            }
-                break;
-            case 5:{
-                alert( mod( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
-            }
             break;
-     }
+        case 4: {
+            alert( div( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
+        }
+            break;
+        case 5: {
+            alert( mod( +prompt('Enter a', ''), +prompt('Enter b', '') ) );
+        }
+            break;
+    }
 }
 
 function plass(a, b) {

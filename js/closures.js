@@ -184,7 +184,7 @@ For instance:
     }
 
     function inArray( arr ) {
-        return function(x) {//??? filter пердает?
+        return function(x) {
             return arr.includes(x);
         };
     }

@@ -185,7 +185,7 @@ if ([].indexOf) {
 
 // шаг 2
     let p = 2;
-    let i = 0
+    let i = 0;
     do {
         // шаг 3
         for ( i = 2 * p; i < 100; i += p) {

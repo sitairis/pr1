@@ -70,7 +70,7 @@ function deepEqualFilter( obj1, obj2 ) {
    }
    return !keys1.filter( function(key) {
        if( typeof obj1[key] == 'object' ){
-           return !deepEqual1(obj1[key], obj2[key]);
+           return !deepEqualFilter(obj1[key], obj2[key]);
        }else {
            return obj1[key] !== obj2[key];
        }
@@ -163,4 +163,4 @@ let customerOrder4 = {
 };
 
 // alert( deepEqualFilter( customerOrder4, customerOrder3 ) );
-alert( deepEqualRec( customerOrder1, customerOrder2 ) );
+// alert( deepEqualRec( customerOrder1, customerOrder2 ) );
