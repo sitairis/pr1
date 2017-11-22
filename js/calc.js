@@ -35,7 +35,7 @@ let matrix = {
     }
 };
 
-function matrixOperations( type ) {// обсудить функцию!!!!
+function matrixOperations( type ) {
 
     let matr = { ...matrix };
     let mtxF = { ...matrix };
